@@ -326,7 +326,7 @@ export class ForbiddenLandsCharacterSheet extends ActorSheet {
         const pushedMessage = isPushed ? " (PUSHED) " : "";
         const damage = numberOfSword > 0 ? numberOfSword + this.lastDamage : numberOfSword;
 
-        resultMessage = "<b style='color:green'>" + this.lastTestName + "</b>" + pushedMessage + "<b>" + damage + "⚔️ | "+ numberOfSkull + " 💀</b></br>";
+        resultMessage = "<b style='color:green'>" + this.lastTestName + "</b>" + pushedMessage + "<b> " + damage + "⚔️ | "+ numberOfSkull + " 💀</b></br>";
 
         let diceMessage = this.printDices() + "</br>";
         let chatData = {
@@ -341,6 +341,9 @@ export class ForbiddenLandsCharacterSheet extends ActorSheet {
             let diceFormula = numberOfDice + "d" + numberOfFaces;
             let roll = new Roll(diceFormula, {});
             roll.roll();
+            if (game.dice3d !== undefined) {
+                game.dice3d.showForRoll(roll);
+            }
             roll.parts.forEach(part => {
                 part.rolls.forEach(r => {
                     let successAndWeight = this.getSuccessAndWeight(r.roll, typeOfDice);
