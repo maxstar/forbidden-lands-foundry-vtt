@@ -323,19 +323,11 @@ export class ForbiddenLandsCharacterSheet extends ActorSheet {
         let numberOfSword = this.countSword();
         let numberOfSkull = this.countSkull();
         let resultMessage;
-        if (isPushed) {
-            if (numberOfSword > 0) {
-                resultMessage = "<b style='color:green'>" + this.lastTestName + "</b> (PUSHED) <b>" + (numberOfSword + this.lastDamage) + "⚔️ | "+ numberOfSkull + " 💀</b></br>";
-            } else {
-                resultMessage = "<b style='color:red'>" + this.lastTestName + "</b> (PUSHED) <b>" + numberOfSword + "⚔️ | "+ numberOfSkull + " 💀</b></br>";
-            }
-        } else {
-            if (numberOfSword > 0) {
-                resultMessage = "<b style='color:green'>" + this.lastTestName + "</b> <b>" + (numberOfSword + this.lastDamage) + "⚔️ | "+ numberOfSkull + " 💀</b></br>";
-            } else {
-                resultMessage = "<b style='color:red'>" + this.lastTestName + "</b> <b>" + numberOfSword + "⚔️ | "+ numberOfSkull + " 💀</b></br>";
-            }
-        }
+        const pushedMessage = isPushed ? " (PUSHED) " : "";
+        const damage = numberOfSword > 0 ? numberOfSword + this.lastDamage : numberOfSword;
+
+        resultMessage = "<b style='color:green'>" + this.lastTestName + "</b>" + pushedMessage + "<b>" + damage + "⚔️ | "+ numberOfSkull + " 💀</b></br>";
+
         let diceMessage = this.printDices() + "</br>";
         let chatData = {
             user: game.user._id,
