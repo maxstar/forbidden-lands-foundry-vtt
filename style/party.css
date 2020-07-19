@@ -81,3 +81,40 @@
     height: 48px;
     line-height: 48px;
 }
+
+.travel-actions table {
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+.travel-actions .border-left-solid {
+    border-left: 2px solid;
+}
+
+.travel-actions .border-top-solid {
+    border-top: 2px solid;
+}
+
+.travel-actions .border-right-solid {
+    border-right: 2px solid;
+}
+
+.travel-actions .border-bottom-solid {
+    border-bottom: 2px solid;
+}
+
+.travel-actions .border-left-dashed {
+    border-left: 2px dashed;
+}
+
+.travel-actions .border-top-dashed {
+    border-top: 2px dashed;
+}
+
+.travel-actions .border-right-dashed {
+    border-right: 2px dashed;
+}
+
+.travel-actions .border-bottom-dashed {
+    border-bottom: 2px dashed;
+}

@@ -1,4 +1,43 @@
 <div class="flex column full">
-    Travel Actions
-    <h1>sdkjgpsdfg</h1>
+    <h1>Travel Actions</h1>
+    <div class="travel-actions">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="travel-action-hike border-left-solid border-top-solid" style="width: 90px; height: 90px;" rowspan="2">Hike</td>
+                    <td class="travel-action-lead border-top-solid border-right-solid" style="width: 75px; height: 90px;">Lead the Way</td>
+                    <td class="travel-action-rest border-top-solid border-right-solid" style="width: 90px; height: 90px;" rowspan="2">Rest</td>
+                </tr>
+                <tr>
+                    <td class="travel-action-watch border-top-solid border-right-dashed" style="width: 90px; height: 90px;">Keep Watch</td>
+                </tr>
+                <tr>
+                    <td class="travel-action-other border-left-solid border-bottom-solid border-top-solid" style="width: 90px; height: 90px;" rowspan="4">
+                        Other
+                        <div class="scrollable">
+                            <ol>
+                            {{#each partyMembers as |partyMember|}}
+                            <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
+                                <h4 class="party-member-name">{{partyMember.name}}</h4>
+                            </li>
+                            {{/each}}
+                        </ol>
+                        </div>
+                    </td>
+                    <td class="travel-action-sleep border-left-solid border-bottom-solid border-top-dashed" style="width: 90px; height: 90px;" rowspan="4">Sleep</td>
+                    <td class="travel-action-forage border-left-dashed border-top-dashed border-right-solid" style="width: 90px; height: 90px;">Forage</td>
+                </tr>
+                <tr>
+                    <td class="travel-action-hunt border-left-dashed border-top-dashed border-right-solid" style="width: 90px; height: 90px;">Hunt</td>
+                </tr>
+                <tr>
+                    <td class="travel-action-fish border-left-dashed border-top-dashed border-right-solid" style="width: 90px; height: 90px;">Fish</td>
+                </tr>
+                <tr>
+                    <td class="travel-action-camp border-left-dashed border-top-dashed border-bottom-solid border-right-solid" style="width: 90px; height: 90px;">Make Camp</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
