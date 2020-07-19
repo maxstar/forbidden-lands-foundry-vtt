@@ -14,6 +14,7 @@
   "styles": [
     "style/common.css",
     "style/character.css",
+    "style/party.css",
     "style/monster.css",
     "style/stronghold.css",
     "style/item.css",

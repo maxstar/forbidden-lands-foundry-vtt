@@ -7,10 +7,7 @@
       "stronghold"
     ],
     "party": {
-      "partyMembers": {
-        "label": "PARTY.MEMBERS",
-        "value": {}
-      },
+      "partyMembers": [],
       "bio": {
         "note": {
           "label": "BIO.NOTE",

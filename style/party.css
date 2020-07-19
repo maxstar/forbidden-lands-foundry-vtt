@@ -1,0 +1,83 @@
+.forbidden-lands .party {
+    height: 100%;
+    width: 100%;
+}
+
+.forbidden-lands .party .bio .avatar {
+    flex: 0 0 auto;
+}
+
+.forbidden-lands .party .bio .avatar img {
+    border: 1px dashed black;
+    border-radius: 10px;
+}
+
+.forbidden-lands .party .bio .name {
+    flex: 0 0 auto;
+    width: 250px;
+}
+
+.forbidden-lands .party .bio .kin {
+    flex: 0 0 auto;
+    width: 250px;
+}
+
+.forbidden-lands .party .bio .profession {
+    flex: 0 0 auto;
+    width: 250px;
+}
+
+.forbidden-lands .party .bio .age {
+    flex: 0 0 auto;
+    width: 100px;
+}
+
+.forbidden-lands .party .bio .reputation {
+    flex: 0 0 auto;
+    width: 100px;
+}
+
+.forbidden-lands .party .bio .willpower {
+    flex: 0 0 auto;
+    width: 100px;
+}
+
+.forbidden-lands .party .bio .experience {
+    flex: 0 0 auto;
+    width: 100px;
+}
+
+.forbidden-lands .party .roll {
+    background-color: lightslategrey;
+}
+
+.forbidden-lands .party .roll:hover {
+    box-shadow: 0 0 10px darkolivegreen;
+    text-shadow: 0 0 10px darkolivegreen;
+}
+
+.forbidden-lands .party .push {
+    background-color: lightslategrey;
+}
+
+.forbidden-lands .party .push:hover {
+    box-shadow: 0 0 10px darkolivegreen;
+    text-shadow: 0 0 10px darkolivegreen;
+}
+
+.party-member .party-member-avatar {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+}
+
+.party-member .party-member-name {
+    line-height: 48px;
+}
+
+.party-member .button {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 48px;
+    line-height: 48px;
+}

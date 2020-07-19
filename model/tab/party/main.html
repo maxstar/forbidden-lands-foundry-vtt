@@ -1,27 +1,18 @@
 <div class="flex column full">
-    Main Party Screen
     <div class="party-member-list">
+        <h1>Party Members</h1>
         <div class="scrollable">
-            ...
+            <ol>
             {{#each partyMembers as |partyMember|}}
-            <div class="party-member" data-item-id="{{partyMember._id}}">
-                <div class="name">{{partyMember.name}}</div>
-            </div>
+            <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                <div class="button">
+                    <a class="item-control item-delete" title="Remove from party"><i class="fas fa-trash"></i></a>
+                </div>
+                <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
+                <h4 class="party-member-name">{{partyMember.name}}</h4>
+            </li>
             {{/each}}
+        </ol>
         </div>
     </div>
-    <div>{{data.bio.note.value}}</div>
-    <div class="scrollable">
-        {{#each actor.items as |item|}}
-        <div class="gear item flex row center" data-item-id="{{item._id}}">
-            <div class="name">{{item.name}}</div>
-            <div class="bonus">{{item.data.bonus}}</div>
-            <div class="button">
-                <a class="item-control item-edit" title="Edit Weapon"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete Weapon"><i class="fas fa-trash"></i></a>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-    end of screen
 </div>

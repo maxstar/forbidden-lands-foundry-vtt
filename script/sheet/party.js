@@ -21,7 +21,9 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
         const data = super.getData();
 
         data.partyMembers = {};
-        for (let ownedActorId in data.actor.data.partyMembers.value) {
+        let ownedActorId;
+        for (let i = 0; i < data.actor.data.partyMembers.length; i++) {
+            ownedActorId = data.actor.data.partyMembers[i];
             data.partyMembers[ownedActorId] = game.actors.get(ownedActorId).data;
         }
         console.log('getData()');
@@ -31,9 +33,21 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
+
         // html.find('.item-create').click(ev => {
         //     this.onItemCreate(ev)
         // });
+        html.find('.item-delete').click(this.handleRemoveMember.bind(this));
+    }
+
+    async handleRemoveMember(event) {
+        const div = $(event.currentTarget).parents(".party-member");
+
+        let partyMembers = [...this.actor.data.data.partyMembers];
+        partyMembers.splice(partyMembers.indexOf(div.data("entity-id")), 1);
+        await this.actor.update({'data.partyMembers': partyMembers});
+
+        div.slideUp(200, () => this.render(false));
     }
 
     //The onDragItemStart event can be subverted to let you package additional data what you're dragging
@@ -68,9 +82,10 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
         console.log('Party actor:');
         console.log(this.actor.data);
 
-        let partyMembers = Object.assign({}, this.actor.data.data.partyMembers.value);
-        partyMembers[draggedItem.id] = draggedItem.id;
-        await this.actor.update({'data.partyMembers.value': partyMembers});
+        let partyMembers = [...this.actor.data.data.partyMembers];
+        partyMembers.push(draggedItem.id);
+        partyMembers = [...new Set(partyMembers)];
+        await this.actor.update({'data.partyMembers': partyMembers});
         this.render(true);
     }
 }
