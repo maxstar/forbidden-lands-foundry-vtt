@@ -9,7 +9,8 @@
   "author": "Perfectro",
   "scripts": [],
   "esmodules": [
-    "script/hooks.js"
+    "script/hooks.js",
+    "application/party-sheet/hooks.js"
   ],
   "styles": [
     "style/common.css",
