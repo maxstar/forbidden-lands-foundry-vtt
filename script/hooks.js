@@ -1,4 +1,5 @@
 import {ForbiddenLandsActor} from "./actor/forbidden-lands.js";
+import {ForbiddenLandsPartySheet} from "./sheet/party.js";
 import {ForbiddenLandsCharacterSheet} from "./sheet/character.js";
 import {ForbiddenLandsMonsterSheet} from "./sheet/monster.js";
 import {ForbiddenLandsStrongholdSheet} from "./sheet/stronghold.js";
@@ -19,6 +20,7 @@ Hooks.once("init", async function () {
     CONFIG.Combat.initiative = {formula: "1d10", decimals: 0};
     CONFIG.Actor.entityClass = ForbiddenLandsActor;
     Actors.unregisterSheet("core", ActorSheet);
+    Actors.registerSheet("forbidden-lands", ForbiddenLandsPartySheet, {types: ["party"], makeDefault: true});
     Actors.registerSheet("forbidden-lands", ForbiddenLandsCharacterSheet, {types: ["character"], makeDefault: true});
     Actors.registerSheet("forbidden-lands", ForbiddenLandsMonsterSheet, {types: ["monster"], makeDefault: true});
     Actors.registerSheet("forbidden-lands", ForbiddenLandsStrongholdSheet, {types: ["stronghold"], makeDefault: true});
@@ -40,6 +42,7 @@ Hooks.once("init", async function () {
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
+        "systems/my-forbidden-lands/model/party.html",
         "systems/forbidden-lands/model/character.html",
         "systems/forbidden-lands/model/monster.html",
         "systems/forbidden-lands/model/stronghold.html",
@@ -65,7 +68,9 @@ async function preloadHandlebarsTemplates() {
         "systems/forbidden-lands/model/tab/bio.html",
         "systems/forbidden-lands/model/tab/building-stronghold.html",
         "systems/forbidden-lands/model/tab/hireling-stronghold.html",
-        "systems/forbidden-lands/model/tab/gear-stronghold.html"
+        "systems/forbidden-lands/model/tab/gear-stronghold.html",
+        "systems/my-forbidden-lands/model/tab/party/main.html",
+        "systems/my-forbidden-lands/model/tab/party/travel.html",
     ];
     return loadTemplates(templatePaths);
 }

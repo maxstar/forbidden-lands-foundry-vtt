@@ -85,6 +85,9 @@
   "TAB.NOTE": "NOTE",
   "TAB.BUILDING": "BUILDING",
   "TAB.HIRELING": "HIRELING",
+  "TAB.TRAVEL": "TRAVEL",
+
+  "PARTY.MEMBERS": "Party Members",
 
   "WEAPON.NAME": "Name",
   "WEAPON.CATEGORY": "Category",
