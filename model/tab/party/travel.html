@@ -1,41 +1,164 @@
 <div class="flex column full">
     <h1>Travel Actions</h1>
+    <form>
+        <button class="reset border">{{localize "RESET"}}</button>
+    </form>
     <div class="travel-actions">
         <table>
             <tbody>
                 <tr>
-                    <td class="travel-action-hike border-left-solid border-top-solid" style="width: 90px; height: 90px;" rowspan="2">Hike</td>
-                    <td class="travel-action-lead border-top-solid border-right-solid" style="width: 75px; height: 90px;">Lead the Way</td>
-                    <td class="travel-action-rest border-top-solid border-right-solid" style="width: 90px; height: 90px;" rowspan="2">Rest</td>
+                    <td class="travel-action travel-action-hike border-left-solid border-top-solid"
+                        style="width: 90px; height: 90px;" rowspan="2" data-travel-action="hike">
+                        Hike
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.hike as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
+                    <td class="travel-action travel-action-lead border-top-solid border-right-solid"
+                        style="width: 75px; height: 90px;" data-travel-action="lead">Lead the Way
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.lead as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
+                    <td class="travel-action travel-action-rest border-top-solid border-right-solid"
+                        style="width: 90px; height: 90px;" rowspan="2" data-travel-action="rest">Rest
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.rest as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td class="travel-action-watch border-top-solid border-right-dashed" style="width: 90px; height: 90px;">Keep Watch</td>
+                    <td class="travel-action travel-action-watch border-top-solid border-right-dashed"
+                        style="width: 90px; height: 90px;" data-travel-action="watch">Keep Watch
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.watch as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td class="travel-action-other border-left-solid border-bottom-solid border-top-solid" style="width: 90px; height: 90px;" rowspan="4">
+                    <td class="travel-action travel-action-other border-left-solid border-bottom-solid border-top-solid"
+                        style="width: 90px; height: 90px;" rowspan="4" data-travel-action="other">
                         Other
                         <div class="scrollable">
                             <ol>
-                            {{#each partyMembers as |partyMember|}}
-                            <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                                <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
-                                <h4 class="party-member-name">{{partyMember.name}}</h4>
-                            </li>
-                            {{/each}}
-                        </ol>
+                                {{#each travel.other as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
                         </div>
                     </td>
-                    <td class="travel-action-sleep border-left-solid border-bottom-solid border-top-dashed" style="width: 90px; height: 90px;" rowspan="4">Sleep</td>
-                    <td class="travel-action-forage border-left-dashed border-top-dashed border-right-solid" style="width: 90px; height: 90px;">Forage</td>
+                    <td class="travel-action travel-action-sleep border-left-solid border-bottom-solid border-top-dashed"
+                        style="width: 90px; height: 90px;" rowspan="4" data-travel-action="sleep">Sleep
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.sleep as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
+                    <td class="travel-action travel-action-forage border-left-dashed border-top-dashed border-right-solid"
+                        style="width: 90px; height: 90px;" data-travel-action="forage">Forage
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.forage as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td class="travel-action-hunt border-left-dashed border-top-dashed border-right-solid" style="width: 90px; height: 90px;">Hunt</td>
+                    <td class="travel-action travel-action-hunt border-left-dashed border-top-dashed border-right-solid"
+                        style="width: 90px; height: 90px;" data-travel-action="hunt">Hunt
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.hunt as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td class="travel-action-fish border-left-dashed border-top-dashed border-right-solid" style="width: 90px; height: 90px;">Fish</td>
+                    <td class="travel-action travel-action-fish border-left-dashed border-top-dashed border-right-solid"
+                        style="width: 90px; height: 90px;" data-travel-action="fish">Fish
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.fish as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td class="travel-action-camp border-left-dashed border-top-dashed border-bottom-solid border-right-solid" style="width: 90px; height: 90px;">Make Camp</td>
+                    <td class="travel-action travel-action-camp border-left-dashed border-top-dashed border-bottom-solid border-right-solid"
+                        style="width: 90px; height: 90px;" data-travel-action="camp">Make Camp
+                        <div class="scrollable">
+                            <ol>
+                                {{#each travel.camp as |partyMember|}}
+                                <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                                    <img class="party-member-avatar" title="{{partyMember.name}}"
+                                        src="{{partyMember.img}}">
+                                    <h4 class="party-member-name">{{partyMember.name}}</h4>
+                                </li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

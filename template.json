@@ -8,6 +8,48 @@
     ],
     "party": {
       "partyMembers": [],
+      "travel": {
+        "other": {
+          "label": "TRAVEL.OTHER",
+          "value": []
+        },
+        "hike": {
+          "label": "TRAVEL.HIKE",
+          "value": []
+        },
+        "lead": {
+          "label": "TRAVEL.LEAD",
+          "value": ""
+        },
+        "watch": {
+          "label": "TRAVEL.WATCH",
+          "value": ""
+        },
+        "rest": {
+          "label": "TRAVEL.REST",
+          "value": []
+        },
+        "sleep": {
+          "label": "TRAVEL.SLEEP",
+          "value": []
+        },
+        "forage": {
+          "label": "TRAVEL.FORAGE",
+          "value": []
+        },
+        "hunt": {
+          "label": "TRAVEL.HUNT",
+          "value": []
+        },
+        "fish": {
+          "label": "TRAVEL.FISH",
+          "value": []
+        },
+        "camp": {
+          "label": "TRAVEL.CAMP",
+          "value": []
+        }
+      },
       "bio": {
         "note": {
           "label": "BIO.NOTE",

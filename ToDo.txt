@@ -1,8 +1,8 @@
 Party Sheet
 
 	Core Functionality
-		# Hold a list of party members (PCs and NPCs) that are travelling together.
-		# Allow visual assignment of party members to travel actions (keep watch, forage, etc.)
+		# [done] Hold a list of party members (PCs and NPCs) that are travelling together.
+		# [done] Allow visual assignment of party members to travel actions (keep watch, forage, etc.)
 		# Provide interface for travel rolls
 		# Automate travel roll modifier calculation
 
