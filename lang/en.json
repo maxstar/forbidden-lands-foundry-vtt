@@ -89,6 +89,17 @@
 
   "PARTY.MEMBERS": "Party Members",
 
+  "TRAVEL.HIKE": "Hike",
+  "TRAVEL.LEAD": "Lead the Way",
+  "TRAVEL.WATCH": "Keep Watch",
+  "TRAVEL.REST": "Rest",
+  "TRAVEL.SLEEP": "Sleep",
+  "TRAVEL.FORAGE": "Forage",
+  "TRAVEL.HUNT": "Hunt",
+  "TRAVEL.FISH": "Fish",
+  "TRAVEL.CAMP": "Make Camp",
+  "TRAVEL.OTHER": "Other",
+
   "WEAPON.NAME": "Name",
   "WEAPON.CATEGORY": "Category",
   "WEAPON.GRIP": "Grip",
