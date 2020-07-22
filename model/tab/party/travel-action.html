@@ -1,0 +1,14 @@
+
+<div class="travel-action travel-action-{{actionKey}}" data-travel-action="{{actionKey}}">
+    <div class="travel-action-header">{{ localize (toUpperCase (strconcat "TRAVEL." actionKey)) }}<span class="travel-action-help">?</span></div>
+    <div class="scrollable">
+        <ol>
+            {{#each assignedCharacters as |partyMember|}}
+            <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
+                <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
+                <h4 class="party-member-name">{{partyMember.name}}</h4>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+</div>

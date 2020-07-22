@@ -6,7 +6,7 @@
     <div class="travel-actions">
         <div class="flex row wrap grow">
             <div class="travel-action travel-action-hike" data-travel-action="hike">
-                <div class="travel-action-header">{{ localize "TRAVEL.HIKE"}}</div>
+                <div class="travel-action-header">{{ localize "TRAVEL.HIKE"}} <span class="travel-action-help">?</span></div>
                 <div class="scrollable">
                     <ol>
                         {{#each travel.hike as |partyMember|}}
@@ -17,136 +17,20 @@
                         {{/each}}
                     </ol>
                 </div>
-
-                <div class="travel-action travel-action-lead" data-travel-action="lead">
-                    <div class="travel-action-header">{{ localize "TRAVEL.LEAD"}}</div>
-                    <div class="scrollable">
-                        <ol>
-                            {{#each travel.lead as |partyMember|}}
-                            <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                                <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
-                                <h4 class="party-member-name">{{partyMember.name}}</h4>
-                            </li>
-                            {{/each}}
-                        </ol>
-                    </div>
-                </div>
+                {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.lead actionKey="lead"}}
             </div>
-            <div class="travel-action travel-action-rest" data-travel-action="rest">
-                <div class="travel-action-header">{{ localize "TRAVEL.REST"}}</div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.rest as |partyMember|}}
-                        <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                            <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
-                        </li>
-                        {{/each}}
-                    </ol>
-                </div>
-            </div>
-            <div class="travel-action travel-action-sleep" data-travel-action="sleep">
-                <div class="travel-action-header">{{ localize "TRAVEL.SLEEP"}}</div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.sleep as |partyMember|}}
-                        <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                            <img class="party-member-avatar" title="{{partyMember.name}}"
-                                src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
-                        </li>
-                        {{/each}}
-                    </ol>
-                </div>
-            </div>
-            <div class="travel-action travel-action-other" data-travel-action="other">
-                <div class="travel-action-header">{{ localize "TRAVEL.OTHER"}}</div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.other as |partyMember|}}
-                        <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                            <img class="party-member-avatar" title="{{partyMember.name}}"
-                                src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
-                        </li>
-                        {{/each}}
-                    </ol>
-                </div>
-            </div>
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.rest actionKey="rest"}}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.sleep actionKey="sleep"}}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.other actionKey="other"}}
         </div>
         <div class="flex row wrap grow">
-            <div class="travel-action travel-action-watch" data-travel-action="watch">
-                <div class="travel-action-header">{{ localize "TRAVEL.WATCH"}}</div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.watch as |partyMember|}}
-                        <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                            <img class="party-member-avatar" title="{{partyMember.name}}"
-                                src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
-                        </li>
-                        {{/each}}
-                    </ol>
-                </div>
-            </div>
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.watch actionKey="watch"}}
         </div>
         <div class="flex row wrap grow">
-            <div class="travel-action travel-action-forage" data-travel-action="forage">
-                <div class="travel-action-header">{{ localize "TRAVEL.FORAGE"}}</div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.forage as |partyMember|}}
-                        <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                            <img class="party-member-avatar" title="{{partyMember.name}}"
-                                src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
-                        </li>
-                        {{/each}}
-                    </ol>
-                </div>
-            </div>
-            <div class="travel-action travel-action-hunt" data-travel-action="hunt">
-                <div class="travel-action-header">{{ localize "TRAVEL.HUNT"}}</div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.hunt as |partyMember|}}
-                        <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                            <img class="party-member-avatar" title="{{partyMember.name}}"
-                                src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
-                        </li>
-                        {{/each}}
-                    </ol>
-                </div>
-            </div>
-            <div class="travel-action travel-action-fish" data-travel-action="fish">
-                <div class="travel-action-header">{{ localize "TRAVEL.FISH"}}</div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.fish as |partyMember|}}
-                        <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                            <img class="party-member-avatar" title="{{partyMember.name}}"
-                                src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
-                        </li>
-                        {{/each}}
-                    </ol>
-                </div>
-            </div>
-            <div class="travel-action travel-action-camp" data-travel-action="camp">
-                <div class="travel-action-header">{{ localize "TRAVEL.CAMP"}}</div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.camp as |partyMember|}}
-                        <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                            <img class="party-member-avatar" title="{{partyMember.name}}"
-                                src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
-                        </li>
-                        {{/each}}
-                    </ol>
-                </div>
-            </div>
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.forage actionKey="forage"}}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.hunt actionKey="hunt"}}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.fish actionKey="fish"}}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.camp actionKey="camp"}}
         </div>
     </div>
 </div>

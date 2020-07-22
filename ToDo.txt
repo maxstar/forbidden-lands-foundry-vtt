@@ -4,7 +4,10 @@ Party Sheet
 		# [done] Hold a list of party members (PCs and NPCs) that are travelling together.
 		# [done] Allow visual assignment of party members to travel actions (keep watch, forage, etc.)
 		# Provide interface for travel rolls
+		# GM interface for rolling mishaps and random encounters
 		# Automate travel roll modifier calculation
+		# Help info
+			* for travel actions
 
 	Additional Functionality
 		# Hold a list of party supplies

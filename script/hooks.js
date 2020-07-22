@@ -40,6 +40,15 @@ Hooks.once("init", async function () {
     preloadHandlebarsTemplates()
 });
 
+Handlebars.registerHelper('toUpperCase', function(value, options) {
+    return typeof value === 'string' ? value.toUpperCase() : value;
+});
+Handlebars.registerHelper('strconcat', function() {
+    const args = Array.prototype.slice.call(arguments);
+    args.pop(); // remove unrelated data
+    return args.join("");
+});
+
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
         "systems/my-forbidden-lands/model/party.html",
@@ -71,6 +80,7 @@ async function preloadHandlebarsTemplates() {
         "systems/forbidden-lands/model/tab/gear-stronghold.html",
         "systems/my-forbidden-lands/model/tab/party/main.html",
         "systems/my-forbidden-lands/model/tab/party/travel.html",
+        "systems/my-forbidden-lands/model/tab/party/travel-action.html",
     ];
     return loadTemplates(templatePaths);
 }
