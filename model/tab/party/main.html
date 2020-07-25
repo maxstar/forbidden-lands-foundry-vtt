@@ -4,13 +4,7 @@
         <div class="scrollable">
             <ol>
             {{#each partyMembers as |partyMember|}}
-            <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                <div class="button">
-                    <a class="item-control item-delete" title="Remove from party"><i class="fas fa-trash"></i></a>
-                </div>
-                <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
-                <h4 class="party-member-name">{{partyMember.name}}</h4>
-            </li>
+                {{> systems/my-forbidden-lands/model/tab/party/party-member.html partyMember=partyMember deleteButton=true}}
             {{/each}}
         </ol>
         </div>

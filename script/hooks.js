@@ -90,6 +90,7 @@ async function preloadHandlebarsTemplates() {
         "systems/my-forbidden-lands/model/tab/party/main.html",
         "systems/my-forbidden-lands/model/tab/party/travel.html",
         "systems/my-forbidden-lands/model/tab/party/travel-action.html",
+        "systems/my-forbidden-lands/model/tab/party/party-member.html",
     ];
     return loadTemplates(templatePaths);
 }

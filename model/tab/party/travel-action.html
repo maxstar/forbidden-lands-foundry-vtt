@@ -6,10 +6,7 @@
     <div class="scrollable">
         <ol>
             {{#each assignedCharacters as |partyMember|}}
-            <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
-                <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
-                {{ enrich (strconcat "@Actor[" partyMember.name "]") }}
-            </li>
+                {{> systems/my-forbidden-lands/model/tab/party/party-member.html partyMember=partyMember}}
             {{/each}}
         </ol>
     </div>
