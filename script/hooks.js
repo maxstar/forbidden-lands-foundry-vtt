@@ -44,7 +44,7 @@ Handlebars.registerHelper('toUpperCase', function(value, options) {
     return typeof value === 'string' ? value.toUpperCase() : value;
 });
 Handlebars.registerHelper('capitalize', function(value, options) {
-    return typeof value === 'string' ? value[0].toUpperCase() + value.slice(1) : value;
+    return typeof value === 'string' && value.length > 0 ? value[0].toUpperCase() + value.slice(1) : value;
 });
 Handlebars.registerHelper('strconcat', function() {
     const args = Array.prototype.slice.call(arguments);

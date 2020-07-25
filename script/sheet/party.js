@@ -1,4 +1,5 @@
 import { ForbiddenLandsActor } from "../actor/forbidden-lands.js";
+import { TravelActionsConfig } from "../components/travel-actions.js";
 
 export class ForbiddenLandsPartySheet extends ActorSheet {
 
@@ -25,6 +26,7 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
 
         data.partyMembers = {};
         data.travel = {};
+        data.travelActions = TravelActionsConfig;
         let ownedActorId, assignedActorId, travelAction;
         for (let i = 0; i < data.actor.data.partyMembers.length; i++) {
             ownedActorId = data.actor.data.partyMembers[i];
@@ -56,6 +58,14 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
            this.assignPartyMembersToAction(this.actor.data.data.partyMembers, 'other');
            this.render(true);
         });
+
+        let button;
+        for(let key in TravelActionsConfig) {
+            for (let i = 0; i < TravelActionsConfig[key].buttons.length; i++) {
+                button = TravelActionsConfig[key].buttons[i];
+                html.find('.' + button.class).click(button.handler);
+            }
+        }
     }
 
     async handleRemoveMember(event) {

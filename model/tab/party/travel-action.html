@@ -1,8 +1,15 @@
 
-<div class="travel-action travel-action-{{actionKey}}" data-travel-action="{{actionKey}}">
+<div class="travel-action travel-action-{{action.key}}" data-travel-action="{{action.key}}">
     <div class="travel-action-header">
-        {{ enrich (strconcat "@JournalEntry[" (capitalize actionKey) "]{" (localize (toUpperCase (strconcat "TRAVEL." actionKey))) "}") }}
+        {{#if action.journalEntryName}}
+            {{ enrich (strconcat "@JournalEntry[" (capitalize action.journalEntryName) "]{" (localize action.name) "}") }}
+        {{else}}
+            {{ localize action.name }}
+        {{/if}}
     </div>
+    {{#each action.buttons as |button|}}
+        <button class="travel-roll {{button.class}}">{{localize button.name}}</button>
+    {{/each}}
     <div class="scrollable">
         <ol>
             {{#each assignedCharacters as |partyMember|}}

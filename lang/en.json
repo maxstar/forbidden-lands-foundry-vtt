@@ -100,6 +100,17 @@
   "TRAVEL.CAMP": "Make Camp",
   "TRAVEL.OTHER": "Other",
 
+  "TRAVEL_ROLL.FORCED_MARCH": "Forced March",
+  "TRAVEL_ROLL.HIKE_IN_DARKNESS": "Hike in Darkness",
+  "TRAVEL_ROLL.NAVIGATE": "Navigate",
+  "TRAVEL_ROLL.KEEP_WATCH": "Keep Watch",
+  "TRAVEL_ROLL.RECOVER": "Recover",
+  "TRAVEL_ROLL.FIND_FOOD": "Find Food",
+  "TRAVEL_ROLL.FIND_PREY": "Find Prey",
+  "TRAVEL_ROLL.KILL_PREY": "Kill Prey",
+  "TRAVEL_ROLL.CATCH_FISH": "Catch Fish",
+  "TRAVEL_ROLL.MAKE_CAMP": "Make Camp",
+
   "WEAPON.NAME": "Name",
   "WEAPON.CATEGORY": "Category",
   "WEAPON.GRIP": "Grip",

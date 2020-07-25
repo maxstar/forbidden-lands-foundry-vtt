@@ -122,3 +122,9 @@
 .travel-action .travel-action-help:hover {
     background-color: cyan;
 }
+
+.travel-action button.travel-roll {
+    font-size: 12px;
+    line-height: normal;
+    display: block;
+}

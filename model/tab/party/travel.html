@@ -1,35 +1,25 @@
 <div class="flex column full">
-    <h1>Travel Actions</h1>
     <form>
         <button class="reset border">{{localize "RESET"}}</button>
     </form>
     <div class="travel-actions">
         <div class="flex row wrap grow">
-            <div class="travel-action travel-action-hike" data-travel-action="hike">
-                <div class="travel-action-header">
-                    {{ enrich (strconcat "@JournalEntry[Hike]{" (localize "TRAVEL.HIKE") "}") }}
-                </div>
-                <div class="scrollable">
-                    <ol>
-                        {{#each travel.hike as |partyMember|}}
-                            {{> systems/my-forbidden-lands/model/tab/party/party-member.html partyMember=partyMember}}
-                        {{/each}}
-                    </ol>
-                </div>
-                {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.lead actionKey="lead"}}
+            <div>
+                {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.hike action=travelActions.hike }}
+                {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.lead action=travelActions.lead }}
             </div>
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.rest actionKey="rest"}}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.sleep actionKey="sleep"}}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.other actionKey="other"}}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.rest action=travelActions.rest }}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.sleep action=travelActions.sleep }}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.other action=travelActions.other }}
         </div>
         <div class="flex row wrap grow">
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.watch actionKey="watch"}}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.watch action=travelActions.watch }}
         </div>
         <div class="flex row wrap grow">
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.forage actionKey="forage"}}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.hunt actionKey="hunt"}}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.fish actionKey="fish"}}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.camp actionKey="camp"}}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.forage action=travelActions.forage }}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.hunt action=travelActions.hunt }}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.fish action=travelActions.fish }}
+            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.camp action=travelActions.camp }}
         </div>
     </div>
 </div>
