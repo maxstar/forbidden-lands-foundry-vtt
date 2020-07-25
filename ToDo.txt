@@ -3,19 +3,19 @@ Party Sheet
 	Core Functionality
 		# [done] Hold a list of party members (PCs and NPCs) that are travelling together.
 		# [done] Allow visual assignment of party members to travel actions (keep watch, forage, etc.)
-		# Provide interface for travel rolls
-		# GM interface for rolling mishaps and random encounters
-		# Automate travel roll modifier calculation
-		# Help info
+		# [    ] Provide interface for travel rolls
+		# [    ] GM interface for rolling mishaps and random encounters
+		# [    ] Automate travel roll modifier calculation
+		# [done] Help info
 			* for travel actions
 
 	Additional Functionality
-		# Hold a list of party supplies
-			* money
-			* consumables
-			* items that are not carried by party members themselves
+		# [    ] Hold a list of party supplies
+			* [    ] money
+			* [    ] consumables
+			* [    ] items that are not carried by party members themselves
 	
 
 Encumbrance
-	# Hold a list of transportation/container items (horses, carts, etc.)
-	# Automate encumbrance calculation
+	# [    ] Hold a list of transportation/container items (horses, carts, etc.)
+	# [    ] Automate encumbrance calculation

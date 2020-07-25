@@ -43,10 +43,19 @@ Hooks.once("init", async function () {
 Handlebars.registerHelper('toUpperCase', function(value, options) {
     return typeof value === 'string' ? value.toUpperCase() : value;
 });
+Handlebars.registerHelper('capitalize', function(value, options) {
+    return typeof value === 'string' ? value[0].toUpperCase() + value.slice(1) : value;
+});
 Handlebars.registerHelper('strconcat', function() {
     const args = Array.prototype.slice.call(arguments);
     args.pop(); // remove unrelated data
     return args.join("");
+});
+
+Handlebars.registerHelper('enrich', function(content) {
+  // Enrich the content
+  content = TextEditor.enrichHTML(content, {entities: true});
+  return new Handlebars.SafeString(content);
 });
 
 async function preloadHandlebarsTemplates() {

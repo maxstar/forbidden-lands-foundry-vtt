@@ -91,8 +91,6 @@
 }
 .travel-action .travel-action-header {
     margin: 2px 2px 0 2px;
-    border: 1px solid;
-    border-radius: 6px;
     text-align: center;
     font-weight: bold;
     max-height: 20px;

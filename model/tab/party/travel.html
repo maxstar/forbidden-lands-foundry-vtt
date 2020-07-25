@@ -6,7 +6,9 @@
     <div class="travel-actions">
         <div class="flex row wrap grow">
             <div class="travel-action travel-action-hike" data-travel-action="hike">
-                <div class="travel-action-header">{{ localize "TRAVEL.HIKE"}} <span class="travel-action-help">?</span></div>
+                <div class="travel-action-header">
+                    {{ enrich (strconcat "@JournalEntry[Hike]{" (localize "TRAVEL.HIKE") "}") }}
+                </div>
                 <div class="scrollable">
                     <ol>
                         {{#each travel.hike as |partyMember|}}

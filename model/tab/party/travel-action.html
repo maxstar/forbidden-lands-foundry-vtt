@@ -1,6 +1,8 @@
 
 <div class="travel-action travel-action-{{actionKey}}" data-travel-action="{{actionKey}}">
-    <div class="travel-action-header">{{ localize (toUpperCase (strconcat "TRAVEL." actionKey)) }}<span class="travel-action-help">?</span></div>
+    <div class="travel-action-header">
+        {{ enrich (strconcat "@JournalEntry[" (capitalize actionKey) "]{" (localize (toUpperCase (strconcat "TRAVEL." actionKey))) "}") }}
+    </div>
     <div class="scrollable">
         <ol>
             {{#each assignedCharacters as |partyMember|}}
