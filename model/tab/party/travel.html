@@ -14,7 +14,7 @@
                         {{#each travel.hike as |partyMember|}}
                         <li class="party-member flexrow" data-entity-id="{{partyMember._id}}" draggable="true">
                             <img class="party-member-avatar" title="{{partyMember.name}}" src="{{partyMember.img}}">
-                            <h4 class="party-member-name">{{partyMember.name}}</h4>
+                            {{ enrich (strconcat "@Actor[" partyMember.name "]") }}
                         </li>
                         {{/each}}
                     </ol>

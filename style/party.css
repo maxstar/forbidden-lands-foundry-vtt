@@ -82,6 +82,11 @@
     line-height: 48px;
 }
 
+.party-member .entity-link {
+    margin-right: 4px;
+    line-height: 44px;
+}
+
 .travel-action {
     border: 1px solid;
     min-width: 140px;
@@ -89,6 +94,11 @@
 
     flex-grow: 1;
 }
+
+.travel-action ol {
+    padding-left: 4px;
+}
+
 .travel-action .travel-action-header {
     margin: 2px 2px 0 2px;
     text-align: center;
