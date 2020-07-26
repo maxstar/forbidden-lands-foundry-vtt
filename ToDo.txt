@@ -5,7 +5,7 @@ Party Sheet
 		# [done] Allow visual assignment of party members to travel actions (keep watch, forage, etc.)
 		# [done] Provide interface for travel rolls
 		# [    ] GM interface for rolling mishaps and random encounters
-		# [    ] Automate travel roll modifier calculation
+		# [    ] Automate travel roll modifier calculation (forage & hunt)
 		# [done] Help info
 			* for travel actions
 

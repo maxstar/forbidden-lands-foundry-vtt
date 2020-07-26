@@ -86,18 +86,21 @@ export let TravelActionsConfig = {
 
                     const data = game.user.character.data.data;
                     let updateData = {};
+                    let isBroken = false;
                     for (let attribute in data.attribute) {
+                        if (data.attribute[attribute].value === 0) isBroken = true;
                         if (data.attribute[attribute].value > 0 && data.attribute[attribute].value < data.attribute[attribute].max) {
                             updateData['data.attribute.' + attribute + '.value'] = data.attribute[attribute].max;
                         }
                     }
-                    if (Object.keys(updateData).length > 0) { 
-                        await game.user.character.update(updateData);
-                    }
+                    let updateNeeded = Object.keys(updateData).length > 0;
+                    if (updateNeeded) await game.user.character.update(updateData);
 
+                    let content = `<i>Wakes up ${updateNeeded ? 'recovered and' : 'feeling'} well rested</i>`;
+                    if (isBroken) content = "<i>Broken and couldn't recover</i>";
                     let chatData = {
                         user: game.user._id,
-                        content: '<i>Feels well rested</i>'
+                        content: content
                     };
                     ChatMessage.create(chatData, {});
                 },
@@ -119,19 +122,24 @@ export let TravelActionsConfig = {
 
                     const data = game.user.character.data.data;
                     let updateData = {};
+                    let isBroken = false;
                     for (let attribute in data.attribute) {
+                        if (data.attribute[attribute].value === 0) isBroken = true;
                         if (data.attribute[attribute].value > 0 && data.attribute[attribute].value < data.attribute[attribute].max) {
                             updateData['data.attribute.' + attribute + '.value'] = data.attribute[attribute].max;
                         }
                     }
+                    let hasRecovered = Object.keys(updateData).length > 0;
                     if (data.condition.sleepless.value) updateData['data.condition.sleepless.value'] = false;
-                    if (Object.keys(updateData).length > 0) { 
-                        await game.user.character.update(updateData);
-                    }
+                    
+                    let updateNeeded = Object.keys(updateData).length > 0;
+                    if (updateNeeded) await game.user.character.update(updateData);
 
+                    let content = `<i>Wakes up ${hasRecovered ? 'recovered and' : 'feeling'} well rested</i>`;
+                    if (isBroken) content = "<i>Broken and couldn't recover</i>";
                     let chatData = {
                         user: game.user._id,
-                        content: '<i>Wakes up feeling well rested</i>'
+                        content: content
                     };
                     ChatMessage.create(chatData, {});
                 },
