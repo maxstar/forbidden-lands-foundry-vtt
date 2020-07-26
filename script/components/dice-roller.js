@@ -27,6 +27,7 @@ export default class DiceRoller {
         }
         this.lastDamage = computedDamage;
         this.sendRollToChat(false);
+        return this.countSword();
     }
 
     push() {

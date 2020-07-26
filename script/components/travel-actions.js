@@ -1,6 +1,6 @@
 import { RollDialog } from "../dialog/roll-dialog.js";
 
-function rollTravelAction(rollName, skillName) {
+function rollTravelAction(rollName, skillName, onAfterRoll) {
     if (game.user.character === null) return;
     console.log(game.user.character);
 
@@ -13,7 +13,9 @@ function rollTravelAction(rollName, skillName) {
         0, 
         "", 
         0, 
-        0
+        0,
+        null,
+        onAfterRoll
     );
 }
 
@@ -171,7 +173,25 @@ export let TravelActionsConfig = {
                 class: "travel-find-prey",
                 handler: function (event) {
                     console.log('Handle FIND_PREY');
-                    rollTravelAction("TRAVEL_ROLL.FIND_PREY", 'survival');
+                    rollTravelAction(
+                        "TRAVEL_ROLL.FIND_PREY", 
+                        'survival',
+                        function (diceRoller) { // onAfterRoll
+                            const isSuccess = diceRoller.countSword() > 0;
+                            if (isSuccess) {
+                                let rolltable = game.tables.getName('Find a Prey');
+                                if (rolltable) {
+                                    rolltable.draw();
+                                } else {
+                                    let chatData = {
+                                        user: game.user._id,
+                                        content: "You've spotted a prey!<br><i>Create a roll table named 'Find a Prey' to automatically find out what creature have you spotted.<i>"
+                                    };
+                                    ChatMessage.create(chatData, {});
+                                }
+                            }
+                        }
+                    );
                 },
             },
             {

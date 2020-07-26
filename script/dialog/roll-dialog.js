@@ -1,7 +1,9 @@
 import DiceRoller from "../components/dice-roller.js";
 
 export class RollDialog {
-    static prepareRollDialog(rollName, baseDefault, skillDefault, gearDefault, artifactDefault, modifierDefault, damage, diceRoller) {
+    static prepareRollDialog(rollName, baseDefault, skillDefault, gearDefault, artifactDefault, modifierDefault, damage, diceRoller, onAfterRoll) {
+        onAfterRoll = onAfterRoll || function () {};
+
         if (typeof baseDefault !== 'object') baseDefault = { name: "Base", value: baseDefault };
         if (typeof skillDefault !== 'object') skillDefault = { name: "Skill", value: skillDefault };
 
@@ -33,6 +35,7 @@ export class RollDialog {
                             parseInt(modifier, 10),
                             parseInt(damage, 10)
                         );
+                        onAfterRoll(diceRoller);
                     }
                 },
                 cancel: {
