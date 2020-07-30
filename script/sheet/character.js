@@ -8,7 +8,7 @@ export class ForbiddenLandsCharacterSheet extends ForbiddenLandsActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["forbidden-lands", "sheet", "actor"],
-      template: "systems/forbidden-lands/model/character.html",
+      template: "systems/my-forbidden-lands/model/character.html",
       width: 620,
       height: 740,
       resizable: false,
@@ -150,7 +150,7 @@ export class ForbiddenLandsCharacterSheet extends ForbiddenLandsActorSheet {
       name: consumableName,
       result: game.i18n.localize(result)
     }
-    const html = await renderTemplate("systems/forbidden-lands/chat/consumable.html", consumableData);
+    const html = await renderTemplate("systems/my-forbidden-lands/chat/consumable.html", consumableData);
     let chatData = {
       user: game.user._id,
       rollMode: game.settings.get("core", "rollMode"),

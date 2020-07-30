@@ -217,7 +217,7 @@ export class ForbiddenLandsActorSheet extends ActorSheet {
       damage: numberOfSword + this.lastDamage,
       dices: this.dices
     };
-    const html = await renderTemplate("systems/forbidden-lands/chat/roll.html", rollData);
+    const html = await renderTemplate("systems/my-forbidden-lands/chat/roll.html", rollData);
     let chatData = {
       user: game.user._id,
       rollMode: game.settings.get("core", "rollMode"),
