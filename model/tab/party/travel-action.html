@@ -10,7 +10,7 @@
     {{#each action.buttons as |button|}}
         <button class="travel-roll {{button.class}}">{{localize button.name}}</button>
     {{/each}}
-    <div class="scrollable">
+    <div>
         <ol>
             {{#each assignedCharacters as |partyMember|}}
                 {{> systems/my-forbidden-lands/model/tab/party/party-member.html partyMember=partyMember}}
