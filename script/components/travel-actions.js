@@ -19,6 +19,34 @@ function rollTravelAction(rollName, skillName, onAfterRoll) {
     );
 }
 
+function handleGM(assignedPartyMembers, actionName, actionRollName) {
+    if (!game.user.isGM) return;
+
+    let content = '';
+    let assignedPartyMemberId;
+    let names = [];
+    let join = ' ';
+    assignedPartyMembers = typeof assignedPartyMembers !== 'object' && assignedPartyMembers !== '' ? [assignedPartyMembers] : assignedPartyMembers;
+    if (assignedPartyMembers.length === 0) {
+        content = `<i>GM wonders whether anyone will <b>${game.i18n.localize(actionName)}</b></i>`;
+    } else {
+        for (let i = 0; i < assignedPartyMembers.length; i++) {
+            names.push(
+                (i+1 === assignedPartyMembers.length && assignedPartyMembers.length > 1 ? 'and ' : '') 
+                + `<u>${game.actors.get(assignedPartyMembers[i]).data.name}</u>`
+            );
+        }
+        if (assignedPartyMembers.length > 2) join = ', ';
+        content = `<i>GM wants ${names.join(join)} to make a <b>${game.i18n.localize(actionRollName)}</b> roll</i>`;
+    }
+
+    let chatData = {
+        user: game.user._id,
+        content: content,
+    };
+    ChatMessage.create(chatData, {});
+}
+
 export let TravelActionsConfig = {
     hike: {
         key: "hike",
@@ -28,16 +56,16 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.FORCED_MARCH",
                 class: "travel-forced-march",
-                handler: function (event) {
-                    console.log('Handle FORCED_MARCH');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.hike.value, 'TRAVEL.HIKE', 'TRAVEL_ROLL.FORCED_MARCH');
                     rollTravelAction("TRAVEL_ROLL.FORCED_MARCH", 'endurance');
                 },
             },
             {
                 name: "TRAVEL_ROLL.HIKE_IN_DARKNESS",
                 class: "travel-hike-in-darkness",
-                handler: function (event) {
-                    console.log('Handle HIKE_IN_DARKNESS');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.hike.value, 'TRAVEL.HIKE', 'TRAVEL_ROLL.HIKE_IN_DARKNESS');
                     rollTravelAction("TRAVEL_ROLL.HIKE_IN_DARKNESS", 'scouting');
                 },
             },
@@ -51,8 +79,8 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.NAVIGATE",
                 class: "travel-navigate",
-                handler: function (event) {
-                    console.log('Handle NAVIGATE');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.lead.value, 'TRAVEL.LEAD', 'TRAVEL_ROLL.NAVIGATE');
                     rollTravelAction("TRAVEL_ROLL.NAVIGATE", 'survival');
                 },
             },
@@ -66,8 +94,8 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.KEEP_WATCH",
                 class: "travel-keep-watch",
-                handler: function (event) {
-                    console.log('Handle KEEP_WATCH');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.watch.value, 'TRAVEL.WATCH', 'TRAVEL_ROLL.KEEP_WATCH');
                     rollTravelAction("TRAVEL_ROLL.KEEP_WATCH", 'scouting');
                 },
             },
@@ -81,8 +109,7 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.RECOVER",
                 class: "travel-rest-recover",
-                handler: async function (event) {
-                    console.log('Handle rest RECOVER');
+                handler: async function (party, event) {
                     if (game.user.character === null) return;
                     console.log(game.user.character);
 
@@ -117,8 +144,7 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.RECOVER",
                 class: "travel-sleep-recover",
-                handler: async function (event) {
-                    console.log('Handle sleep RECOVER');
+                handler: async function (party, event) {
                     if (game.user.character === null) return;
                     console.log(game.user.character);
 
@@ -156,8 +182,8 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.FIND_FOOD",
                 class: "travel-find-food",
-                handler: function (event) {
-                    console.log('Handle FIND_FOOD');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.forage.value, 'TRAVEL.FORAGE', 'TRAVEL_ROLL.FIND_FOOD');
                     rollTravelAction("TRAVEL_ROLL.FIND_FOOD", 'survival');
                 },
             },
@@ -171,8 +197,8 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.FIND_PREY",
                 class: "travel-find-prey",
-                handler: function (event) {
-                    console.log('Handle FIND_PREY');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.hunt.value, 'TRAVEL.HUNT', 'TRAVEL_ROLL.FIND_PREY');
                     rollTravelAction(
                         "TRAVEL_ROLL.FIND_PREY", 
                         'survival',
@@ -197,8 +223,9 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.KILL_PREY",
                 class: "travel-kill-prey",
-                handler: function (event) {
-                    console.log('Handle KILL_PREY');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.hunt.value, 'TRAVEL.HUNT', 'TRAVEL_ROLL.KILL_PREY');
+
                     if (game.user.character === null) return;
                     console.log(game.user.character);
 
@@ -224,8 +251,8 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.CATCH_FISH",
                 class: "travel-catch-fish",
-                handler: function (event) {
-                    console.log('Handle CATCH_FISH');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.fish.value, 'TRAVEL.FISH', 'TRAVEL_ROLL.CATCH_FISH');
                     rollTravelAction("TRAVEL_ROLL.CATCH_FISH", 'survival');
                 },
             },
@@ -239,8 +266,8 @@ export let TravelActionsConfig = {
             {
                 name: "TRAVEL_ROLL.MAKE_CAMP",
                 class: "travel-make-camp",
-                handler: function (event) {
-                    console.log('Handle MAKE_CAMP');
+                handler: function (party, event) {
+                    handleGM(party.actor.data.data.travel.camp.value, 'TRAVEL.CAMP', 'TRAVEL_ROLL.MAKE_CAMP');
                     rollTravelAction("TRAVEL_ROLL.MAKE_CAMP", 'survival');
                 },
             },

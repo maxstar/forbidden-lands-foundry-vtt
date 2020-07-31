@@ -63,7 +63,7 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
         for(let key in TravelActionsConfig) {
             for (let i = 0; i < TravelActionsConfig[key].buttons.length; i++) {
                 button = TravelActionsConfig[key].buttons[i];
-                html.find('.' + button.class).click(button.handler);
+                html.find('.' + button.class).click(button.handler.bind(this, this));
             }
         }
     }
