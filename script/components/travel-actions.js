@@ -2,7 +2,6 @@ import { RollDialog } from "../dialog/roll-dialog.js";
 
 function rollTravelAction(rollName, skillName, onAfterRoll) {
     if (game.user.character === null) return;
-    console.log(game.user.character);
 
     const data = game.user.character.data.data;
     const skill = data.skill[skillName];
@@ -111,7 +110,6 @@ export let TravelActionsConfig = {
                 class: "travel-rest-recover",
                 handler: async function (party, event) {
                     if (game.user.character === null) return;
-                    console.log(game.user.character);
 
                     const data = game.user.character.data.data;
                     let updateData = {};
@@ -146,7 +144,6 @@ export let TravelActionsConfig = {
                 class: "travel-sleep-recover",
                 handler: async function (party, event) {
                     if (game.user.character === null) return;
-                    console.log(game.user.character);
 
                     const data = game.user.character.data.data;
                     let updateData = {};
@@ -227,7 +224,6 @@ export let TravelActionsConfig = {
                     handleGM(party.actor.data.data.travel.hunt.value, 'TRAVEL.HUNT', 'TRAVEL_ROLL.KILL_PREY');
 
                     if (game.user.character === null) return;
-                    console.log(game.user.character);
 
                     const data = game.user.character.data.data;
                     const skill = data.skill.marksmanship;

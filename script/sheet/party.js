@@ -45,8 +45,6 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
                 data.travel[travelActionKey][travelAction.value] = game.actors.get(travelAction.value).data;
             }
         }
-        console.log('getData()');
-        console.log(data);
         return data;
     }
 
@@ -105,10 +103,7 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
             return;
         }
 
-        console.log('Drag Start');
-        console.log(event);
         let entityId = event.currentTarget.dataset.entityId;
-        console.log(entityId);
         event.dataTransfer.setData(
             "text/plain",
             JSON.stringify({
@@ -122,20 +117,13 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
     async _onDrop(event) {
         super._onDrop(event);
 
-        console.log("Drop");
         //the ondrop event is what reads the data and lets you modify the target you're dropping it onto
         let draggedItem = JSON.parse(event.dataTransfer.getData('text/plain'));
         if (draggedItem.type !== 'Actor') return;
 
-        console.log(draggedItem);
         const actor = game.actors.get(draggedItem.id);
 
         if (actor.data.type !== 'character') return;
-
-        console.log('Dropped actor:');
-        console.log(actor.data);
-        console.log('Party actor:');
-        console.log(this.actor.data);
 
         if (draggedItem.action === 'assign') {
             this.handleTravelActionAssignment(event, actor);
@@ -158,7 +146,6 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
         let updateData = {}, updDataKey, partyMemberId;
         for (let i = 0; i < partyMembers.length; i++) {
             partyMemberId = typeof partyMembers[i] === 'object' ? partyMembers[i].data._id : partyMembers[i];
-            console.log('Assigning ' + partyMemberId + ' to ' + travelActionKey);
     
             // remove party member from the current assignment
             let travelAction, actionParticipants;

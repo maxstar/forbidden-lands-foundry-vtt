@@ -19,7 +19,6 @@
         <div class="sheet-tabs tabs flex row border" data-group="primary">
             <b class="item" data-tab="main">{{localize "TAB.MAIN"}}</b>
             <b class="item" data-tab="travel">{{localize "TAB.TRAVEL"}}</b>
-            <!-- <b class="item" data-tab="gear">{{localize "TAB.GEAR"}}</b> -->
             <b class="item" data-tab="note">{{localize "TAB.NOTE"}}</b>
         </div>
 
@@ -30,9 +29,6 @@
             <div class="tab" data-group="primary" data-tab="travel">
                 {{> systems/my-forbidden-lands/model/tab/party/travel.html}}
             </div>
-            <!-- <div class="tab" data-group="primary" data-tab="gear">
-                {{> systems/my-forbidden-lands/model/tab/gear.html}}
-            </div> -->
             <div class="tab note" data-group="primary" data-tab="note">
                 {{editor content=data.bio.note.value target="data.bio.note.value" button=true owner=owner editable=editable}}
             </div>
