@@ -34,10 +34,23 @@
     text-overflow: ellipsis;
 }
 
-.travel-action {
+table.travel-actions {
     border: 1px solid;
-    min-width: 136px;
+    border-spacing: 0px;
+    border-collapse: separate;
+}
+
+table.travel-actions td{
+    border: 1px solid;
+    padding: 2px;
+    vertical-align: top;
+    height: 1px;
+}
+
+.travel-action {
+    min-width: 179px;
     min-height: 90px;
+    height: 100%;
 
     flex-grow: 1;
 }

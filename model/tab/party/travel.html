@@ -3,24 +3,24 @@
     <form>
         <button class="reset border">{{localize "RESET"}}</button>
     </form>
-    <div class="travel-actions">
-        <div class="flex row wrap grow">
-            <div>
-                {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.hike action=travelActions.hike }}
-                {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.lead action=travelActions.lead }}
-            </div>
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.rest action=travelActions.rest }}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.sleep action=travelActions.sleep }}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.other action=travelActions.other }}
-        </div>
-        <div class="flex row wrap grow">
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.watch action=travelActions.watch }}
-        </div>
-        <div class="flex row wrap grow">
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.forage action=travelActions.forage }}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.hunt action=travelActions.hunt }}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.fish action=travelActions.fish }}
-            {{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.camp action=travelActions.camp }}
-        </div>
-    </div>
+    <table class="travel-actions">
+        <tr>
+            <td>{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.hike action=travelActions.hike }}</td>
+            <td rowspan="2">{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.rest action=travelActions.rest }}</td>
+            <td rowspan="2">{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.sleep action=travelActions.sleep }}</td>
+        </tr>
+        <tr>
+            <td>{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.lead action=travelActions.lead }}</td>
+        </tr>
+        <tr>
+            <td>{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.watch action=travelActions.watch }}</td>
+            <td>{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.camp action=travelActions.camp }}</td>
+            <td>{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.other action=travelActions.other }}</td>
+        </tr>
+        <tr>
+            <td>{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.forage action=travelActions.forage }}</td>
+            <td>{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.hunt action=travelActions.hunt }}</td>
+            <td>{{> systems/my-forbidden-lands/model/tab/party/travel-action.html assignedCharacters=travel.fish action=travelActions.fish }}</td>
+        </tr>
+    </table>
 </div>
