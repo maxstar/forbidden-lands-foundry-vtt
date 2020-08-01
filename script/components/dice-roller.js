@@ -144,7 +144,7 @@ export default class DiceRoller {
     printDices() {
         let message = "";
         this.dices.forEach(dice => {
-            message = message + "<img width='25px' height='25px' style='border:none;margin-right:2px;margin-top:2px' src='systems/forbidden-lands/asset/" + dice.type + "-dice-" + dice.value + ".png'/>"
+            message = message + "<img width='25px' height='25px' style='border:none;margin-right:2px;margin-top:2px' src='systems/my-forbidden-lands/asset/" + dice.type + "-dice-" + dice.value + ".png'/>"
         });
         return message;
     }
