@@ -1,11 +1,6 @@
-import { ForbiddenLandsActor } from "../actor/forbidden-lands.js";
 import { TravelActionsConfig } from "../components/travel-actions.js";
 
 export class ForbiddenLandsPartySheet extends ActorSheet {
-
-    dices = [];
-    lastTestName = "";
-    lastDamage = 0;
 
     static get defaultOptions() {
         let dragDrop = [...super.defaultOptions.dragDrop];
@@ -13,8 +8,8 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ["forbidden-lands", "sheet", "actor"],
             template: "systems/forbidden-lands/model/party.html",
-            width: 600,
-            height: 700,
+            width: 620,
+            height: 740,
             resizable: false,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "main" }],
             dragDrop: dragDrop,
@@ -96,7 +91,6 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
         div.slideUp(200, () => this.render(false));
     }
 
-    //The onDragItemStart event can be subverted to let you package additional data what you're dragging
     _onDragStart(event) {
         if (event.currentTarget.dataset.itemId !== undefined) {
             super._onDragStart(event);
@@ -117,12 +111,10 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
     async _onDrop(event) {
         super._onDrop(event);
 
-        //the ondrop event is what reads the data and lets you modify the target you're dropping it onto
         let draggedItem = JSON.parse(event.dataTransfer.getData('text/plain'));
         if (draggedItem.type !== 'Actor') return;
 
         const actor = game.actors.get(draggedItem.id);
-
         if (actor.data.type !== 'character') return;
 
         if (draggedItem.action === 'assign') {

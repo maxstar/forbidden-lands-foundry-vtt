@@ -1,12 +1,22 @@
+/** This class is responsible for rolling dice */
 export default class DiceRoller {
-    
+
     dices = [];
-    lastTestName = "";
+    lastRollName = "";
     lastDamage = 0;
 
-    roll(testName, base, skill, gear, artifacts, modifier, damage) {
+    /**
+     * @param  {string} rollName   Display name for the roll
+     * @param  {number} base       Number of Base dice
+     * @param  {number} skill      Number of Skill dice
+     * @param  {number} gear       Number of Gear dice
+     * @param  {Array}  artifacts  Array of artifact dice objects: [{dice: number of dice, face: number of faces}]
+     * @param  {number} modifier   Increase/decrease amount of skill dice
+     * @param  {number} [damage=0] Weapon damage
+     */
+    roll(rollName, base, skill, gear, artifacts, modifier, damage = 0) {
         this.dices = [];
-        this.lastTestName = testName;
+        this.lastRollName = rollName;
         let computedSkill = skill + modifier;
         let computedSkillType;
         if (computedSkill > 0) {
@@ -27,13 +37,17 @@ export default class DiceRoller {
         }
         this.lastDamage = computedDamage;
         this.sendRollToChat(false);
-        return this.countSword();
     }
 
+    /**
+     * Push the last roll
+     */
     push() {
-        this.dices.forEach(dice => {
-            if ((dice.value < 6 && dice.value > 1 && dice.type !== "skill") || (dice.value < 6 && dice.type === "skill")) {
-                dice.value = Math.floor(Math.random() * Math.floor(dice.face)) + 1;
+        this.dices.forEach((dice) => {
+            if ((dice.value < 6 && dice.value > 1 && dice.type !== "skill") || (dice.value < 6 && ["artifact", "skill"].includes(dice.type))) {
+                let die = new Die(dice.face);
+                die.roll(1);
+                dice.value = die.total;
                 let successAndWeight = this.getSuccessAndWeight(dice.value, dice.type);
                 dice.success = successAndWeight.success;
                 dice.weight = successAndWeight.weight;
@@ -42,87 +56,128 @@ export default class DiceRoller {
         this.sendRollToChat(true);
     }
 
-    rollConsumable(consumable) {
+    /**
+     * @param  {object} consumable {label: consumable name, value: number of die faces}
+     */
+    async rollConsumable(consumable) {
         let consumableName = game.i18n.localize(consumable.label);
-        let formula = "1d" + consumable.value;
-        let roll = new Roll(formula, {});
-        roll.roll();
-        let resultMessage;
-        if (roll._total > 1) {
-            resultMessage = "<b>" + consumableName + "</b></br><b style='color:green'>Succeed</b>";
-        } else if (parseInt(consumable.value, 10) === 6) {
-            resultMessage = "<b>" + consumableName + "</b></br><b style='color:red'>Failed. No more " + consumableName.toLowerCase() + " !</b>";
+        let result;
+        if (!consumable.value) {
+            result = "FAILED";
         } else {
-            resultMessage = "<b>" + consumableName + "</b></br><b style='color:red'>Failed. Downgrading to " + (consumable.value - 2) + "</b>";
+            let die = new Die(consumable.value);
+            die.roll(1);
+            if (die.total > 2) {
+                result = "SUCCEED";
+            } else {
+                result = "FAILED";
+            }
         }
+        let consumableData = {
+            name: consumableName,
+            result: game.i18n.localize(result)
+        }
+        const html = await renderTemplate("systems/forbidden-lands/chat/consumable.html", consumableData);
         let chatData = {
             user: game.user._id,
-            content: resultMessage
+            rollMode: game.settings.get("core", "rollMode"),
+            content: html,
         };
-        ChatMessage.create(chatData, {});
+        if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
+            chatData.whisper = ChatMessage.getWhisperIDs("GM");
+        } else if (chatData.rollMode === "selfroll") {
+            chatData.whisper = [game.user];
+        }
+        ChatMessage.create(chatData);
     }
 
-    sendRollToChat(isPushed) {
-        this.dices.sort(function(a, b){return b.weight - a.weight});
+    /**
+     * Display roll in chat
+     * 
+     * @param  {boolean} isPushed Whether roll was pushed
+     */
+    async sendRollToChat(isPushed) {
+        this.dices.sort(function (a, b) {
+            return b.weight - a.weight;
+        });
         let numberOfSword = this.countSword();
         let numberOfSkull = this.countSkull();
-        let resultMessage;
-        const pushedMessage = isPushed ? " (PUSHED) " : "";
-        const damage = numberOfSword > 0 ? numberOfSword + this.lastDamage : numberOfSword;
-
-        resultMessage = "<b style='color:green'>" + this.lastTestName + "</b>" + pushedMessage + "<b> " + damage + "⚔️ | "+ numberOfSkull + " 💀</b></br>";
-
-        let diceMessage = this.printDices() + "</br>";
+        let rollData = {
+            name: this.lastRollName,
+            isPushed: isPushed,
+            sword: numberOfSword,
+            skull: numberOfSkull,
+            damage: numberOfSword + this.lastDamage,
+            dices: this.dices
+        };
+        const html = await renderTemplate("systems/forbidden-lands/chat/roll.html", rollData);
         let chatData = {
             user: game.user._id,
-            content: resultMessage + diceMessage
+            rollMode: game.settings.get("core", "rollMode"),
+            content: html,
         };
-        ChatMessage.create(chatData, {});
+        if (["gmroll", "blindroll"].includes(chatData.rollMode)) {
+            chatData.whisper = ChatMessage.getWhisperIDs("GM");
+        } else if (chatData.rollMode === "selfroll") {
+            chatData.whisper = [game.user];
+        }
+        ChatMessage.create(chatData);
     }
 
+    /**
+     * Roll a set of dice
+     * 
+     * @param  {number} numberOfDice
+     * @param  {string} typeOfDice
+     * @param  {number} numberOfFaces
+     */
     rollDice(numberOfDice, typeOfDice, numberOfFaces) {
         if (numberOfDice > 0) {
-            let diceFormula = numberOfDice + "d" + numberOfFaces;
-            let roll = new Roll(diceFormula, {});
-            roll.roll();
-            if (game.dice3d !== undefined) {
-                game.dice3d.showForRoll(roll);
-            }
-            roll.parts.forEach(part => {
-                part.rolls.forEach(r => {
-                    let successAndWeight = this.getSuccessAndWeight(r.roll, typeOfDice);
-                    this.dices.push({
-                        value: r.roll,
-                        type: typeOfDice,
-                        success: successAndWeight.success,
-                        weight: successAndWeight.weight,
-                        face: numberOfFaces
-                    });
+            let die = new Die(numberOfFaces);
+            die.roll(numberOfDice);
+            die.results.forEach((result) => {
+                let successAndWeight = this.getSuccessAndWeight(result, typeOfDice);
+                this.dices.push({
+                    value: result,
+                    type: typeOfDice,
+                    success: successAndWeight.success,
+                    weight: successAndWeight.weight,
+                    face: numberOfFaces,
                 });
             });
         }
     }
-
+    
+    /**
+     * Retrieves amount of successes from a single die
+     * and weight for ordering during display
+     * 
+     * @param  {number} diceValue
+     * @param  {string} diceType
+     */
     getSuccessAndWeight(diceValue, diceType) {
         if (diceValue === 12) {
-            return {success: 4, weight: 4};
+            return { success: 4, weight: 4 };
         } else if (diceValue >= 10) {
-            return {success: 3, weight: 3};
+            return { success: 3, weight: 3 };
         } else if (diceValue >= 8) {
-            return {success: 2, weight: 2};
+            return { success: 2, weight: 2 };
         } else if (diceValue >= 6) {
             if (diceType === "skill-penalty") {
-                return {success: -1, weight: -1};
+                return { success: -1, weight: -1 };
             } else {
-                return {success: 1, weight: 1};
+                return { success: 1, weight: 1 };
             }
         } else if (diceValue === 1 && diceType !== "skill-penalty" && diceType !== "skill") {
-            return {success: 0, weight: -2};
+            return { success: 0, weight: -2 };
         } else {
-            return {success: 0, weight: 0};
+            return { success: 0, weight: 0 };
         }
     }
-
+    
+    /**
+     * Count total successes
+     */
     countSword() {
         let numberOfSword = 0;
         this.dices.forEach(dice => {
@@ -131,6 +186,9 @@ export default class DiceRoller {
         return numberOfSword;
     }
 
+    /**
+     * Count total failures
+     */
     countSkull() {
         let numberOfSkull = 0;
         this.dices.forEach(dice => {
@@ -139,13 +197,5 @@ export default class DiceRoller {
             }
         });
         return numberOfSkull;
-    }
-
-    printDices() {
-        let message = "";
-        this.dices.forEach(dice => {
-            message = message + "<img width='25px' height='25px' style='border:none;margin-right:2px;margin-top:2px' src='systems/my-forbidden-lands/asset/" + dice.type + "-dice-" + dice.value + ".png'/>"
-        });
-        return message;
     }
 }

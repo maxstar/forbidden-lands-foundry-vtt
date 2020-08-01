@@ -1,5 +1,12 @@
 import { RollDialog } from "../dialog/roll-dialog.js";
 
+/**
+ * Roll skill check to perform a travel action
+ * 
+ * @param  {string}   rollName    Display name for the roll
+ * @param  {string}   skillName   Unlocalized label
+ * @param  {Function} onAfterRoll Callback that will be executed after roll is made
+ */
 function rollTravelAction(rollName, skillName, onAfterRoll) {
     if (game.user.character === null) return;
 
@@ -18,11 +25,21 @@ function rollTravelAction(rollName, skillName, onAfterRoll) {
     );
 }
 
+/**
+ * When GM clicks a travel action we don't want to make any rolls 
+ * because we have no idea which character should make a roll.
+ * Instead we just display chat messages that request the rolls from players.
+ * If there is an NPC in a party that has to make a roll, 
+ * then GM just makes this roll from that NPCs char sheet.
+ * 
+ * @param  {Array}  assignedPartyMembers Array of character IDs
+ * @param  {string} actionName           Unlocalized name of travel action
+ * @param  {string} actionRollName       Unlocalized name of a roll associated with a travel action (e.g. "Find Prey" for "Hunt")
+ */
 function handleGM(assignedPartyMembers, actionName, actionRollName) {
     if (!game.user.isGM) return;
 
     let content = '';
-    let assignedPartyMemberId;
     let names = [];
     let join = ' ';
     assignedPartyMembers = typeof assignedPartyMembers !== 'object' && assignedPartyMembers !== '' ? [assignedPartyMembers] : assignedPartyMembers;
