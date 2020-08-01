@@ -2,7 +2,7 @@ export class ForbiddenLandsTalentSheet extends ItemSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["forbidden-lands", "sheet", "item"],
-      template: "systems/my-forbidden-lands/model/talent.html",
+      template: "systems/forbidden-lands/model/talent.html",
       width: 400,
       height: 420,
       resizable: false,

@@ -12,7 +12,7 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
         dragDrop.push({ dragSelector: '.party-member', dropSelector: '.party-member-list' });
         return mergeObject(super.defaultOptions, {
             classes: ["forbidden-lands", "sheet", "actor"],
-            template: "systems/my-forbidden-lands/model/party.html",
+            template: "systems/forbidden-lands/model/party.html",
             width: 600,
             height: 700,
             resizable: false,
