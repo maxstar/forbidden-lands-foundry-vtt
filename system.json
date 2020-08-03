@@ -30,7 +30,16 @@
     "style/tab/gear.css",
     "style/tab/bio.css"
   ],
-  "packs": [],
+  "packs": [
+    {
+      "label": "Rules Reference",
+      "entity": "JournalEntry",
+      "name": "rules-reference",
+      "path": "packs/rules-reference.db",
+      "system": "forbidden-lands",
+      "package": "system"
+    }
+  ],
   "languages": [
     {
       "lang": "en",
