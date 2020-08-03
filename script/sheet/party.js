@@ -8,8 +8,8 @@ export class ForbiddenLandsPartySheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ["forbidden-lands", "sheet", "actor"],
             template: "systems/forbidden-lands/model/party.html",
-            width: 620,
-            height: 740,
+            width: 700,
+            height: 840,
             resizable: false,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "main" }],
             dragDrop: dragDrop,

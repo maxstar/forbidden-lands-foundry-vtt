@@ -7,9 +7,11 @@
             {{ localize action.name }}
         {{/if}}
     </div>
-    {{#each action.buttons as |button|}}
-        <button class="travel-roll {{button.class}}">{{localize button.name}}</button>
-    {{/each}}
+    <div class="travel-rolls">
+        {{#each action.buttons as |button|}}
+            <button class="travel-roll {{button.class}}">{{localize button.name}}</button>
+        {{/each}}
+    </div>
     <div>
         <ol>
             {{#each assignedCharacters as |partyMember|}}

@@ -34,23 +34,30 @@
     text-overflow: ellipsis;
 }
 
+.party-member-list {
+    height: 100%;
+}
+
 table.travel-actions {
-    border: 1px solid;
-    border-spacing: 0px;
+    border: 0px solid;
+    border-spacing: 6px;
     border-collapse: separate;
+    background: rgb(255, 255, 255);
+    margin-top: 0px;
 }
 
 table.travel-actions td{
-    border: 1px solid;
-    padding: 2px;
+    /* border: 1px solid;
+    padding: 2px; */
     vertical-align: top;
     height: 1px;
 }
 
 .travel-action {
-    min-width: 179px;
+    min-width: 196px;
     min-height: 90px;
     height: 100%;
+    margin-bottom: 5px;
 
     flex-grow: 1;
 }
@@ -60,14 +67,19 @@ table.travel-actions td{
 }
 
 .travel-action .travel-action-header {
-    margin: 2px 2px 0 2px;
     text-align: center;
     font-weight: bold;
     max-height: 20px;
+    border-bottom: 1px solid;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.travel-action-header .entity-link {
+    background-color: white;
+    border: 0px solid;
 }
 
 .travel-action .travel-action-help {
@@ -86,6 +98,7 @@ table.travel-actions td{
 .travel-action button.travel-roll {
     font-size: 12px;
     display: block;
-    border: 2px groove;
     width: 99%;
+
+    border-bottom: 1px gray dashed;
 }
