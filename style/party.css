@@ -8,10 +8,16 @@
     text-align: center;
 }
 
+.party-member:hover {
+    background-color: lightgray;
+}
+
 .party-member .party-member-avatar {
     flex: 0 0 48px;
     width: 48px;
     height: 48px;
+    border: 0px;
+    cursor: pointer;
 }
 
 .party-member .party-member-name {
@@ -32,6 +38,9 @@
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
+
+    border: 0px;
+    background-color: inherit;
 }
 
 .party-member-list {
@@ -47,8 +56,6 @@ table.travel-actions {
 }
 
 table.travel-actions td{
-    /* border: 1px solid;
-    padding: 2px; */
     vertical-align: top;
     height: 1px;
 }
@@ -57,7 +64,7 @@ table.travel-actions td{
     min-width: 196px;
     min-height: 90px;
     height: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 
     flex-grow: 1;
 }
